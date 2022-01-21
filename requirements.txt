@@ -1,4 +1,3 @@
-os
 telebot
 random
 pyTelegramBotAPI
