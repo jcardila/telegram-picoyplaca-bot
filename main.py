@@ -4,7 +4,7 @@ import random
 from flask import Flask, request
 
 API_KEY = os.environ.get("API_KEY")
-bot = telebot.TeleBot(API_KEY)
+bot = telebot.TeleBot(token=API_KEY)
 server = Flask(__name__)
 
 frases = ["Ni idea!", "Se lo comió el mar..", u"\U0001F937\u200D\u2642\uFE0F", "Ay mi niño..", "Ya no me acuerdo de él :(", "Ese es el monito ese?", "Voló..", "No sufras tanto, por favor", "Me gustas cuando callas porque estás como ausente", "Dice que trabaja..", "Obvio está borracho", "Lo perdimos amigo, lo perdimos.." ]
@@ -30,7 +30,7 @@ def pingGustavo(message):
   bot.send_message(message.chat.id, "Ping Gustavo!")
 
 
-@server.route('/' + TOKEN, methods=['POST'])
+@server.route('/' + API_KEY, methods=['POST'])
 def getMessage():
     json_string = request.get_data().decode('utf-8')
     update = telebot.types.Update.de_json(json_string)
@@ -41,7 +41,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://telegram-gustavo-bot.herokuapp.com/' + TOKEN)
+    bot.set_webhook(url='https://telegram-gustavo-bot.herokuapp.com/' + API_KEY)
     return "!", 200
 
 
