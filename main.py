@@ -3,7 +3,7 @@ import telebot
 import random
 from flask import Flask, request
 
-API_KEY = os.environ['API_KEY'] 
+API_KEY = os.environ.get("API_KEY")
 bot = telebot.TeleBot(API_KEY)
 server = Flask(__name__)
 
