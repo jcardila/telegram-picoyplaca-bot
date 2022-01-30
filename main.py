@@ -29,6 +29,20 @@ def pingGustavo(message):
   bot.send_message(message.chat.id, "Ping Gustavo!")
   bot.send_message(message.chat.id, "Ping Gustavo!")
 
+@bot.message_handler(commands=['CompreGustavo'])
+def compreGustavo(message):
+
+  bot.send_message(message.chat.id, "Compre Gustavo!")
+  bot.send_message(message.chat.id, "Compre Gustavo!")
+  bot.send_message(message.chat.id, "Compre Gustavo!")
+  bot.send_message(message.chat.id, "Compre Gustavo!")
+  bot.send_message(message.chat.id, "Compre Gustavo!")
+  bot.send_message(message.chat.id, "Compre Gustavo!")
+  bot.send_message(message.chat.id, "Compre Gustavo!")
+  bot.send_message(message.chat.id, "Compre Gustavo!")
+  bot.send_message(message.chat.id, "Compre Gustavo!")
+  bot.send_message(message.chat.id, "Compre Gustavo!")
+
 
 @server.route('/' + API_KEY, methods=['POST'])
 def getMessage():
