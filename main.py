@@ -9,13 +9,13 @@ server = Flask(__name__)
 
 frases = ["Ni idea!", "Se lo comió el mar..", u"\U0001F937\u200D\u2642\uFE0F", "Ay mi niño..", "Ya no me acuerdo de él :(", "Ese es el monito ese?", "Voló..", "No sufras tanto, por favor", "Me gustas cuando callas porque estás como ausente", "Dice que trabaja..", "Obvio está borracho", "Lo perdimos amigo, lo perdimos.." ]
 
-@bot.message_handler(commands=['DondeEstaGustavo'])
+@bot.message_handler(commands=['dondeestagustavo'])
 def dondeEstaGustavo(message):
 
   msj = random.choice(frases)
   bot.reply_to(message, msj)
 
-@bot.message_handler(commands=['PingGustavo'])
+@bot.message_handler(commands=['pinggustavo'])
 def pingGustavo(message):
 
   bot.send_message(message.chat.id, "Ping Gustavo!")
@@ -29,7 +29,7 @@ def pingGustavo(message):
   bot.send_message(message.chat.id, "Ping Gustavo!")
   bot.send_message(message.chat.id, "Ping Gustavo!")
 
-@bot.message_handler(commands=['CompreGustavo'])
+@bot.message_handler(commands=['compregustavo'])
 def compreGustavo(message):
 
   bot.send_message(message.chat.id, "Compre Gustavo!")
