@@ -14,6 +14,7 @@ local_date = datetime.now(pytz.timezone('America/Bogota'))  # use datetime here
 fecha_hoy = local_date.date()                                       # now call date method
 fecha_hoy_str = str(fecha_hoy)
 weekday_hoy = fecha_hoy.isoweekday()  #Monday is 1 and Sunday is 7
+day_hoy = fecha_hoy.day
 
 #Pico y placa actual Bucaramanga
 horario_bmga_entre_semana = "De 6am a 8pm"
@@ -23,8 +24,6 @@ regla_bmga_entre_semana = {
   3: "7 y 8", #Miercoles
   4: "9 y 0", #Jueves
   5: "1 y 2"} #Viernes
-print(regla_bmga_entre_semana[2])
-print(fecha_hoy)
 
 horario_bmga_sabado = "De 9am a 1pm"
 regla_bmga_sabado = {
@@ -38,54 +37,46 @@ regla_bmga_sabado = {
   "2022-03-26": "5 y 6"
 }
 
-# print(regla_bmga_sabado[fecha_hoy_str])
+#Pico y placa actual Bogota
+horario_bmga_entre_semana = "De 6am a 9pm"
 
-print (fecha_hoy + timedelta(days = 1))
+#print (fecha_hoy + timedelta(days = 1))
 
 # Enviar pico y placa de Bucaramanga Hoy
 # @bot.message_handler(commands=['picoyplacabmgahoy'])
 def picoyplacabmgahoy(message):
 
-  if weekday_hoy == 7:
+  if weekday_hoy == 7:    #Domingo
     msj = f'\U0001F6D1 Hola! En Bucaramanga hoy no hay Pico y Placa \n'
-  elif weekday_hoy == 6:
+  elif weekday_hoy == 6:  #Sabado
     msj = f'\U0001F6D1 Hola! En Bucaramanga hoy tiene Pico y Placa *{regla_bmga_sabado[fecha_hoy_str]}* \n'
-  else:
+  else:                   #Entre semana
     msj = f'\U0001F6D1 Hola! En Bucaramanga hoy tiene Pico y Placa *{regla_bmga_entre_semana[weekday_hoy]}* \n'
   
   #bot.send_message(message.chat.id, msj)
   print(msj)
 
-picoyplacabmgahoy("j")
+#picoyplacabmgahoy("j")
 
-# @bot.message_handler(commands=['PingGustavo'])
-# def pingGustavo(message):
+# Enviar pico y placa de Bogota Hoy
+# @bot.message_handler(commands=['picoyplacaboghoy'])
+def picoyplacaboghoy(message):
 
-#   bot.send_message(message.chat.id, "Ping Gustavo!")
-#   bot.send_message(message.chat.id, "Ping Gustavo!")
-#   bot.send_message(message.chat.id, "Ping Gustavo!")
-#   bot.send_message(message.chat.id, "Ping Gustavo!")
-#   bot.send_message(message.chat.id, "Ping Gustavo!")
-#   bot.send_message(message.chat.id, "Ping Gustavo!")
-#   bot.send_message(message.chat.id, "Ping Gustavo!")
-#   bot.send_message(message.chat.id, "Ping Gustavo!")
-#   bot.send_message(message.chat.id, "Ping Gustavo!")
-#   bot.send_message(message.chat.id, "Ping Gustavo!")
+  if weekday_hoy == 7:    #Domingo
+    msj = f'\U0001F6D1 Hola! En Bogotá hoy no hay Pico y Placa \n'
+  elif weekday_hoy == 6:  #Sabado
+    msj = f'\U0001F6D1 Hola! En Bogotá hoy no hay Pico y Placa \n'
+  else:                   #Entre semana
+    if (day_hoy % 2) == 0:      #Dia par
+      msj = f'\U0001F6D1 Hola! En Bogotá hoy tiene Pico y Placa los *pares* \n'
+    else:                   #Dia impar
+      msj = f'\U0001F6D1 Hola! En Bogotá hoy tiene Pico y Placa los *impares* \n'
+    
+  
+  #bot.send_message(message.chat.id, msj)
+  print(msj)
 
-# @bot.message_handler(commands=['CompreGustavo'])
-# def compreGustavo(message):
-
-#   bot.send_message(message.chat.id, "Compre Gustavo!")
-#   bot.send_message(message.chat.id, "Compre Gustavo!")
-#   bot.send_message(message.chat.id, "Compre Gustavo!")
-#   bot.send_message(message.chat.id, "Compre Gustavo!")
-#   bot.send_message(message.chat.id, "Compre Gustavo!")
-#   bot.send_message(message.chat.id, "Compre Gustavo!")
-#   bot.send_message(message.chat.id, "Compre Gustavo!")
-#   bot.send_message(message.chat.id, "Compre Gustavo!")
-#   bot.send_message(message.chat.id, "Compre Gustavo!")
-#   bot.send_message(message.chat.id, "Compre Gustavo!")
-
+picoyplacaboghoy("j")
 
 # @server.route('/' + API_KEY, methods=['POST'])
 # def getMessage():
