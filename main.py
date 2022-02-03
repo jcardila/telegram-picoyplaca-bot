@@ -5,9 +5,9 @@ from flask import Flask, request
 from datetime import datetime, date, timedelta
 import pytz
 
-# API_KEY = os.environ.get("API_KEY")
-# bot = telebot.TeleBot(token=API_KEY)
-# server = Flask(__name__)
+API_KEY = os.environ.get("API_KEY")
+bot = telebot.TeleBot(token=API_KEY)
+server = Flask(__name__)
 
 #Inicializar variables globales
 local_date = datetime.now(pytz.timezone('America/Bogota'))  # use datetime here
@@ -38,28 +38,25 @@ regla_bmga_sabado = {
 }
 
 #Pico y placa actual Bogota
-horario_bmga_entre_semana = "De 6am a 9pm"
+horario_bog_entre_semana = "De 6am a 9pm"
 
 #print (fecha_hoy + timedelta(days = 1))
 
 # Enviar pico y placa de Bucaramanga Hoy
-# @bot.message_handler(commands=['picoyplacabmgahoy'])
+@bot.message_handler(commands=['picoyplacabmgahoy'])
 def picoyplacabmgahoy(message):
 
   if weekday_hoy == 7:    #Domingo
     msj = f'\U0001F6D1 Hola! En Bucaramanga hoy no hay Pico y Placa \n'
   elif weekday_hoy == 6:  #Sabado
-    msj = f'\U0001F6D1 Hola! En Bucaramanga hoy tiene Pico y Placa *{regla_bmga_sabado[fecha_hoy_str]}* \n'
+    msj = f'\U0001F6D1 Hola! En Bucaramanga hoy tiene Pico y Placa *{regla_bmga_sabado[fecha_hoy_str]}* \n Horario: {horario_bmga_sabado}'
   else:                   #Entre semana
-    msj = f'\U0001F6D1 Hola! En Bucaramanga hoy tiene Pico y Placa *{regla_bmga_entre_semana[weekday_hoy]}* \n'
+    msj = f'\U0001F6D1 Hola! En Bucaramanga hoy tiene Pico y Placa *{regla_bmga_entre_semana[weekday_hoy]}* \n Horario: {horario_bmga_entre_semana}'
   
-  #bot.send_message(message.chat.id, msj)
-  print(msj)
-
-#picoyplacabmgahoy("j")
+  bot.send_message(message.chat.id, msj)
 
 # Enviar pico y placa de Bogota Hoy
-# @bot.message_handler(commands=['picoyplacaboghoy'])
+@bot.message_handler(commands=['picoyplacaboghoy'])
 def picoyplacaboghoy(message):
 
   if weekday_hoy == 7:    #Domingo
@@ -68,30 +65,26 @@ def picoyplacaboghoy(message):
     msj = f'\U0001F6D1 Hola! En Bogotá hoy no hay Pico y Placa \n'
   else:                   #Entre semana
     if (day_hoy % 2) == 0:      #Dia par
-      msj = f'\U0001F6D1 Hola! En Bogotá hoy tiene Pico y Placa los *pares* \n'
+      msj = f'\U0001F6D1 Hola! En Bogotá hoy tiene Pico y Placa los *pares* \n Horario: {horario_bog_entre_semana}'
     else:                   #Dia impar
-      msj = f'\U0001F6D1 Hola! En Bogotá hoy tiene Pico y Placa los *impares* \n'
-    
+      msj = f'\U0001F6D1 Hola! En Bogotá hoy tiene Pico y Placa los *impares* \n Horario: {horario_bog_entre_semana}'
   
-  #bot.send_message(message.chat.id, msj)
-  print(msj)
+  bot.send_message(message.chat.id, msj)
 
-picoyplacaboghoy("j")
-
-# @server.route('/' + API_KEY, methods=['POST'])
-# def getMessage():
-#     json_string = request.get_data().decode('utf-8')
-#     update = telebot.types.Update.de_json(json_string)
-#     bot.process_new_updates([update])
-#     return "!", 200
+@server.route('/' + API_KEY, methods=['POST'])
+def getMessage():
+    json_string = request.get_data().decode('utf-8')
+    update = telebot.types.Update.de_json(json_string)
+    bot.process_new_updates([update])
+    return "!", 200
 
 
-# @server.route("/")
-# def webhook():
-#     bot.remove_webhook()
-#     bot.set_webhook(url='https://telegram-gustavo-bot.herokuapp.com/' + API_KEY)
-#     return "!", 200
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://telegram-gustavo-bot.herokuapp.com/' + API_KEY)
+    return "!", 200
 
 
-# if __name__ == "__main__":
-    # server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+if __name__ == "__main__":
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
