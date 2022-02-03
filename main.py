@@ -6,7 +6,7 @@ from datetime import datetime, date, timedelta
 import pytz
 
 API_KEY = os.environ.get("API_KEY")
-bot = telebot.TeleBot(token=API_KEY)
+bot = telebot.TeleBot(token=API_KEY, parse_mode="MARKDOWN")
 server = Flask(__name__)
 
 #Inicializar variables globales
