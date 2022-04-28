@@ -19,22 +19,25 @@ day_hoy = fecha_hoy.day
 #Pico y placa actual Bucaramanga
 horario_bmga_entre_semana = "De 6am a 8pm"
 regla_bmga_entre_semana = {
-  1: "3 y 4", #Lunes
-  2: "5 y 6", #Martes
-  3: "7 y 8", #Miercoles
-  4: "9 y 0", #Jueves
-  5: "1 y 2"} #Viernes
+  1: "5 y 6", #Lunes
+  2: "7 y 8", #Martes
+  3: "9 y 0", #Miercoles
+  4: "1 y 2", #Jueves
+  5: "3 y 4"} #Viernes
 
 horario_bmga_sabado = "De 9am a 1pm"
 regla_bmga_sabado = {
-  "2022-02-05": "1 y 2",
-  "2022-02-12": "3 y 4",
-  "2022-02-19": "5 y 6",
-  "2022-02-26": "7 y 8",
-  "2022-03-05": "9 y 0",
-  "2022-03-12": "1 y 2",
-  "2022-03-19": "3 y 4",
-  "2022-03-26": "5 y 6"
+  "2022-04-16": "1 y 2",
+  "2022-04-23": "3 y 4",
+  "2022-04-30": "5 y 6",
+  "2022-05-07": "7 y 8",
+  "2022-05-14": "9 y 0",
+  "2022-05-21": "1 y 2",
+  "2022-05-28": "3 y 4",
+  "2022-06-04": "5 y 6",
+  "2022-06-11": "7 y 8",
+  "2022-06-18": "9 y 0",
+  "2022-06-25": "1 y 2"
 }
 
 #Pico y placa actual Bogota
