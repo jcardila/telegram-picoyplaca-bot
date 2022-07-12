@@ -53,15 +53,12 @@ horario_bog_entre_semana = "De 6am a 9pm"
 @bot.message_handler(commands=['picoyplacabmgahoy'])
 def picoyplacabmgahoy(message):
 
-  if fecha_hoy > vigencia_bmga:
-    msj = f'\U0001F6D1 Los datos del pico y placa de Bucaramanga están desactualizados! \n'
-  else:
-    if weekday_hoy == 7:    #Domingo
-      msj = f'\U0001F6D1 Hola! En Bucaramanga hoy no hay Pico y Placa \n'
-    elif weekday_hoy == 6:  #Sabado
-      msj = f'\U0001F6D1 Hola! En Bucaramanga hoy tiene Pico y Placa *{regla_bmga_sabado[fecha_hoy_str]}* \n Horario: {horario_bmga_sabado}'
-    else:                   #Entre semana
-      msj = f'\U0001F6D1 Hola! En Bucaramanga hoy tiene Pico y Placa *{regla_bmga_entre_semana[weekday_hoy]}* \n Horario: {horario_bmga_entre_semana}'
+  if weekday_hoy == 7:    #Domingo
+    msj = f'\U0001F6D1 Hola! En Bucaramanga hoy no hay Pico y Placa \n'
+  elif weekday_hoy == 6:  #Sabado
+    msj = f'\U0001F6D1 Hola! En Bucaramanga hoy tiene Pico y Placa *{regla_bmga_sabado[fecha_hoy_str]}* \n Horario: {horario_bmga_sabado}'
+  else:                   #Entre semana
+    msj = f'\U0001F6D1 Hola! En Bucaramanga hoy tiene Pico y Placa *{regla_bmga_entre_semana[weekday_hoy]}* \n Horario: {horario_bmga_entre_semana}'
   
   bot.send_message(message.chat.id, msj)
 
